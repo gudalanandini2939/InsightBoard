@@ -17,7 +17,7 @@ app.use(cors());
 app.use(express.json());
 
 app.get("/", (req, res) => {
-  res.send("InsightBoard API Running...");
+  res.send("InsightBoard API Running...!");
 });
 
 app.use("/api/auth", authRoutes);
