@@ -1,0 +1,186 @@
+/* ============================================
+   INSIGHTBOARD — Global Design System
+   Palette: Deep cosmos + electric violet + cyan
+   ============================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+:root {
+  /* Core palette */
+  --bg-deep:        #050510;
+  --bg-mid:         #0a0a1f;
+  --bg-card:        #0f0f2a;
+  --bg-card-hover:  #141435;
+  --border:         rgba(120, 80, 255, 0.18);
+  --border-bright:  rgba(120, 80, 255, 0.45);
+
+  /* Accent spectrum */
+  --violet:         #7c3aed;
+  --violet-bright:  #9d5cff;
+  --violet-glow:    rgba(124, 58, 237, 0.35);
+  --cyan:           #06d6f5;
+  --cyan-dim:       rgba(6, 214, 245, 0.15);
+  --pink:           #f72585;
+  --pink-dim:       rgba(247, 37, 133, 0.15);
+  --gold:           #fbbf24;
+  --green:          #10f5a0;
+  --green-dim:      rgba(16, 245, 160, 0.15);
+
+  /* Text */
+  --text-primary:   #f0eeff;
+  --text-secondary: #a89fd4;
+  --text-muted:     #5c5488;
+
+  /* Gradients */
+  --grad-primary:   linear-gradient(135deg, #7c3aed 0%, #06d6f5 100%);
+  --grad-hot:       linear-gradient(135deg, #f72585 0%, #7c3aed 50%, #06d6f5 100%);
+  --grad-card:      linear-gradient(145deg, rgba(124,58,237,0.08) 0%, rgba(6,214,245,0.04) 100%);
+
+  /* Shadows */
+  --shadow-card:    0 4px 32px rgba(0,0,0,0.4), 0 0 0 1px var(--border);
+  --shadow-glow:    0 0 40px rgba(124,58,237,0.25), 0 0 80px rgba(6,214,245,0.1);
+  --shadow-btn:     0 4px 20px rgba(124,58,237,0.5);
+
+  /* Radius */
+  --r-sm: 8px;
+  --r-md: 14px;
+  --r-lg: 20px;
+  --r-xl: 28px;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--bg-deep);
+  color: var(--text-primary);
+  min-height: 100vh;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Animated cosmic background ─────────────────── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background:
+    radial-gradient(ellipse 80% 50% at 20% 20%, rgba(124,58,237,0.12) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 80% 80%, rgba(6,214,245,0.08) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 60% at 50% 50%, rgba(247,37,133,0.04) 0%, transparent 70%);
+  pointer-events: none;
+  animation: bgPulse 12s ease-in-out infinite alternate;
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background-image:
+    radial-gradient(1px 1px at 20% 30%, rgba(124,58,237,0.6) 0%, transparent 100%),
+    radial-gradient(1px 1px at 60% 70%, rgba(6,214,245,0.5) 0%, transparent 100%),
+    radial-gradient(1px 1px at 80% 20%, rgba(247,37,133,0.4) 0%, transparent 100%),
+    radial-gradient(1px 1px at 40% 80%, rgba(251,191,36,0.4) 0%, transparent 100%),
+    radial-gradient(1px 1px at 90% 50%, rgba(124,58,237,0.5) 0%, transparent 100%),
+    radial-gradient(1px 1px at 10% 60%, rgba(6,214,245,0.4) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 35% 15%, rgba(247,37,133,0.5) 0%, transparent 100%),
+    radial-gradient(1px 1px at 75% 85%, rgba(16,245,160,0.5) 0%, transparent 100%);
+  background-size: 400px 400px, 350px 350px, 500px 500px, 300px 300px, 450px 450px, 380px 380px, 420px 420px, 320px 320px;
+  pointer-events: none;
+  animation: starsDrift 60s linear infinite;
+}
+
+@keyframes bgPulse {
+  0%   { opacity: 0.6; transform: scale(1); }
+  50%  { opacity: 1;   transform: scale(1.05); }
+  100% { opacity: 0.7; transform: scale(1.02); }
+}
+
+@keyframes starsDrift {
+  0%   { transform: translate(0, 0); }
+  100% { transform: translate(-40px, -40px); }
+}
+
+/* Floating orbs */
+.orb {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+  z-index: 0;
+  animation: orbFloat 18s ease-in-out infinite alternate;
+}
+.orb-1 {
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(124,58,237,0.18) 0%, transparent 70%);
+  top: -150px; left: -150px;
+}
+.orb-2 {
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(6,214,245,0.12) 0%, transparent 70%);
+  bottom: -100px; right: -100px;
+  animation-delay: -6s;
+}
+.orb-3 {
+  width: 300px; height: 300px;
+  background: radial-gradient(circle, rgba(247,37,133,0.1) 0%, transparent 70%);
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  animation-delay: -12s;
+}
+
+@keyframes orbFloat {
+  0%   { transform: translate(0, 0) scale(1); }
+  33%  { transform: translate(30px, -20px) scale(1.05); }
+  66%  { transform: translate(-20px, 30px) scale(0.95); }
+  100% { transform: translate(10px, -10px) scale(1.02); }
+}
+
+/* All content above background layers */
+#root, .app-wrapper {
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Scrollbar ───────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg-deep); }
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--violet), var(--cyan));
+  border-radius: 3px;
+}
+
+/* ── Utility ─────────────────────────────────────── */
+.gradient-text {
+  background: var(--grad-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.glass-card {
+  background: var(--grad-card);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-card);
+  transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
+}
+
+.glass-card:hover {
+  border-color: var(--border-bright);
+  box-shadow: var(--shadow-card), var(--shadow-glow);
+  transform: translateY(-2px);
+}
+
