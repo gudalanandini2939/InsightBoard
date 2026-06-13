@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "https://insightboard-7pyy.onrender.com/api",
+  baseURL: "https://insightboard-7pvy.onrender.com/api",
 });
 
 API.interceptors.request.use((config) => {
